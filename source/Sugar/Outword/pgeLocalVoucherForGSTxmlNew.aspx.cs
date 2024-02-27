@@ -2683,7 +2683,7 @@ public partial class Sugar_pgeLocalVoucherForGSTxml : System.Web.UI.Page
         {
             int counts = 0;
             counts = Convert.ToInt32(clsCommon.getString("select count(doc_no) as doc_no from " + tblHead + " where Company_Code='" + Session["Company_Code"].ToString() + "' " +
-                " and Year_Code='" + Session["year"].ToString() + "'"));
+                "  and Tran_Type='"+ drpVouchertype.SelectedValue +"' and Year_Code='" + Session["year"].ToString() + "'"));
             if (counts == 0)
             {
                 txtdoc_no.Text = "1";
@@ -2692,7 +2692,7 @@ public partial class Sugar_pgeLocalVoucherForGSTxml : System.Web.UI.Page
             else
             {
                 Doc_No = Convert.ToInt32(clsCommon.getString("SELECT max(doc_no) as doc_no from " + tblHead + " where Company_Code='" + Session["Company_Code"].ToString() + "' " +
-                    " and Year_Code='" + Session["year"].ToString() + "'")) + 1;
+                    "  and Tran_Type='" + drpVouchertype.SelectedValue + "' and Year_Code='" + Session["year"].ToString() + "'")) + 1;
                 txtdoc_no.Text = Doc_No.ToString();
             }
 
