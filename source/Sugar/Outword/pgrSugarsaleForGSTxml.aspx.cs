@@ -76,6 +76,7 @@ public partial class Sugar_pgrSugarsaleForGSTxml : System.Web.UI.Page
             {
                 hdnfyearcode.Value = Session["year"].ToString();
                 hdnfcompanycode.Value = Session["Company_Code"].ToString();
+                string saleTDSAc = Session["SaleTDSAc"].ToString();
                 isAuthenticate = Security.Authenticate(tblPrefix, user);
                 string User_Type = clsCommon.getString("Select User_Type from tblUser WHERE User_Name='" + user + "'");
                 if (isAuthenticate == "1" || User_Type == "A")

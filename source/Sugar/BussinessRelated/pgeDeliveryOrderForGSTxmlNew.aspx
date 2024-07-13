@@ -2704,7 +2704,7 @@ function SelectRow(CurrentRow, RowIndex) {
                                 else {
                                     alert('please check amount LV is already generated!!!')
                                     $("#loader").hide();
-                                    return false;
+                                    //return false;
 
                                 }
 
@@ -2716,7 +2716,7 @@ function SelectRow(CurrentRow, RowIndex) {
                                 else {
                                     alert('please check amount CV is already generated!!!')
                                     $("#loader").hide();
-                                    return false;
+                                    //return false;
                                 }
                             }
                         }

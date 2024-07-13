@@ -113,12 +113,12 @@ public partial class Sugar_Report_rptsaletcs : System.Web.UI.Page
             if (Accode == "0")
             {
                 cmd = new SqlCommand("select * from qryTCSSaleUnion where Inv_date between '" + datefrom + "' and '" + dateto
-                    + "'  and IsDeleted!=0 and  Year_Code=" + Convert.ToInt32(Session["year"].ToString()) + "   and  Company_Code=" + Convert.ToInt32(Session["Company_Code"].ToString()), con);
+                    + "'  and IsDeleted!=0  and TCS!=0 and  Year_Code=" + Convert.ToInt32(Session["year"].ToString()) + "   and  Company_Code=" + Convert.ToInt32(Session["Company_Code"].ToString()), con);
             }
             else
             {
                 cmd = new SqlCommand("select * from qryTCSSaleUnion where Inv_date  between '" + datefrom + "' and '" + dateto
-                    + "' and Party_Code= '" + Accode + "' and IsDeleted!=0 and Year_Code=" + Convert.ToInt32(Session["year"].ToString()) + "  and  Company_Code=" + Convert.ToInt32(Session["Company_Code"].ToString()), con);
+                    + "' and Party_Code= '" + Accode + "' and IsDeleted!=0 and TCS!=0  and Year_Code=" + Convert.ToInt32(Session["year"].ToString()) + "  and  Company_Code=" + Convert.ToInt32(Session["Company_Code"].ToString()), con);
             }
 
             cmd.CommandType = CommandType.Text;

@@ -517,7 +517,7 @@ public partial class pgeStartup : System.Web.UI.Page
 
                                     Session["RateDiffAcid"] = clsCommon.getString("select accoid from qrymstaccountmaster where Ac_Code=" + Session["RateDiffAc"].ToString() + " and Company_Code=" + Session["Company_Code"].ToString() + "");
 
-                                    Session["Jaggary_TCSRate"] = dt.Rows[0]["Jaggary_TCS"].ToString();
+                                    //Session["Jaggary_TCSRate"] = dt.Rows[0]["Jaggary_TCS"].ToString();
                                     //Session["Jaggary_PurchaseTCSAc"] = dt.Rows[0]["Jaggary_PurchaseTCSAc"].ToString();
                                     //Session["Jaggary_SaleTCSAc"] = dt.Rows[0]["Jaggary_SaleTCSAc"].ToString();
                                     //Session["Jaggary_SaleTDSAc"] = dt.Rows[0]["Jaggary_SaleTDSAc"].ToString();
