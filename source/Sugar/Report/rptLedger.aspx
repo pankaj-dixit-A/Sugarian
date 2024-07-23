@@ -89,6 +89,9 @@
         function AWxml(accode, Action) {
             window.open('../Jaggary/pgeAwak.aspx?doc_no=' + accode + '&Action=' + Action);
         }
+        function XPxml(accode, Action) {
+            window.open('../Inword/pgeOther_Purchase.aspx?opid=' + accode + '&Action=' + Action);
+        }
     </script>
     <script type="text/javascript">
         $(function () {

@@ -1051,7 +1051,7 @@ public partial class Sugar_pgeEInovice : System.Web.UI.Page
                        " Buyer_State_Code,Buyer_Phno,Buyer_Email_Id,NETQNTL,0 as rate, " +
                        " CGSTAmount,SGSTAmount,IGSTAmount,TaxableAmount,isnull(CGSTRate,0) as CGSTRate,isnull(SGSTRate,0) as SGSTRate," +
                        " isnull(IGSTRate,0) as IGSTRate,0 as Distance,'' as LORRYNO,System_Name_E,HSN,GSTRate,TCS_Net_Payable,sale_rate,purc_rate,mill_rate,resale_rate,isnull(isservice,'N') as IsService from NT_1qryEInvoiceCommisionBill  where " +
-                       " Company_Code=" + Convert.ToInt32(Session["Company_Code"].ToString()) + " and doc_no=" + Dono + " and Year_Code=" + Convert.ToInt32(Session["year"].ToString());
+                       " Company_Code=" + Convert.ToInt32(Session["Company_Code"].ToString()) + " and doc_no=" + Dono + " and Tran_Type='"+ type +"' and Year_Code=" + Convert.ToInt32(Session["year"].ToString());
 
             #region[from query]
 

@@ -1241,6 +1241,10 @@ public partial class Reports_rptLedger : System.Web.UI.Page
                     {
                         ScriptManager.RegisterClientScriptBlock(this, this.GetType(), TranType, "javascript:RSOld();", true);
                     }
+                    else if (sessionName == "XP_NO")
+                    {
+                        ScriptManager.RegisterClientScriptBlock(this, this.GetType(), TranType, "javascript:XPOld();", true);
+                    }
                     else
                     {
                         Session[sessionName] = No;
@@ -1367,6 +1371,12 @@ public partial class Reports_rptLedger : System.Web.UI.Page
                         Int32 count = Convert.ToInt32(clsCommon.getString("select doc_no from NT_1_Awakhead where doc_no='" + No + "'   and Company_Code='" + Convert.ToInt32(Session["Company_Code"]).ToString() + "' and Year_Code='" + Convert.ToInt32(Session["year"]).ToString() + "'"));
                         ScriptManager.RegisterClientScriptBlock(this, this.GetType(), TranType, "javascript:AWxml('" + count + "','" + action + "');", true);
                     }
+                    else if (sessionName == "XP_No")
+                    {
+                        Int32 action = 1;
+                        Int32 count = Convert.ToInt32(clsCommon.getString("select opid from NT_1_other_purchase where doc_no='" + No + "'   and Company_Code='" + Convert.ToInt32(Session["Company_Code"]).ToString() + "' and Year_Code='" + Convert.ToInt32(Session["year"]).ToString() + "'"));
+                        ScriptManager.RegisterClientScriptBlock(this, this.GetType(), TranType, "javascript:XPxml('" + count + "','" + action + "');", true);
+                    }
                     else
                     {
                         Session[sessionName] = No;
@@ -1453,6 +1463,9 @@ public partial class Reports_rptLedger : System.Web.UI.Page
                 break;
             case "AW":
                 SessionName = "AW_No";
+                break;
+            case "XP":
+                SessionName = "XP_No";
                 break;
             default:
                 SessionName = "";

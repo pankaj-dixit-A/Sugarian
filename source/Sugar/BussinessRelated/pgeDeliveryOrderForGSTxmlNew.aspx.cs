@@ -2711,8 +2711,8 @@ public partial class Sugar_pgeDeliveryOrderForGSTxmlNew : System.Web.UI.Page
                     " dbo.qrymstaccountmaster AS qrycarporateac ON dbo.nt_1_deliveryorder.ca = qrycarporateac.accoid LEFT OUTER JOIN " +
                     " dbo.qrymstaccountmaster AS qrymstvasuliacc ON dbo.nt_1_deliveryorder.va = qrymstvasuliacc.accoid LEFT OUTER JOIN " +
                     " dbo.qrymstaccountmaster AS qrymstvoucherby ON dbo.nt_1_deliveryorder.vb = qrymstvoucherby.accoid LEFT OUTER JOIN " +
-                    " dbo.nt_1_gstratemaster ON dbo.nt_1_deliveryorder.GstRateCode = dbo.nt_1_gstratemaster.Doc_no AND " +
-                    " dbo.nt_1_deliveryorder.company_code = dbo.nt_1_gstratemaster.Company_Code LEFT OUTER JOIN " +
+                    " dbo.nt_1_gstratemaster ON dbo.nt_1_deliveryorder.GstRateCode = dbo.nt_1_gstratemaster.Doc_no  " +
+                    "  LEFT OUTER JOIN " +
                     " dbo.qrymstitem ON dbo.nt_1_deliveryorder.ic = dbo.qrymstitem.systemid LEFT OUTER JOIN " +
                     " dbo.qrymstaccountmaster AS qrymstdo ON dbo.nt_1_deliveryorder.docd = qrymstdo.accoid LEFT OUTER JOIN " +
                     " dbo.qrymstaccountmaster AS qrymstbrokercode ON qrymstbrokercode.accoid = dbo.nt_1_deliveryorder.bk LEFT OUTER JOIN " +

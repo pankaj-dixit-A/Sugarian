@@ -2760,7 +2760,7 @@ public partial class Sugar_pgeLocalVoucherForGSTxml : System.Web.UI.Page
     protected void drpVouchertype_SelectedIndexChanged(object sender, EventArgs e)
     {
         hdnfcommisiontype.Value = drpVouchertype.SelectedValue;
-        string max = clsCommon.getString("select isnull(max(commissionid),0) as id from " + tblHead + " where tran_type='" + hdnfcommisiontype.Value + "'");
+        string max = clsCommon.getString("select isnull(max(commissionid),0) as id from " + tblHead + " where tran_type='" + hdnfcommisiontype.Value + "' and company_code='" + Convert.ToInt32(Session["Company_Code"].ToString()) + "' and Year_Code=" + Session["year"].ToString() + "");
         hdnf.Value = max;
         showLastRecord();
 

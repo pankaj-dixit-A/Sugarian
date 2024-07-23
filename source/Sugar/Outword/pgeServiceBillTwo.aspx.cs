@@ -2479,8 +2479,8 @@ public partial class Sugar_pgeServiceBillTwo : System.Web.UI.Page
         double subtotal1 = Convert.ToDouble(txtSubtotal.Text != string.Empty ? txtSubtotal.Text : "0.00");
          
             double totalgstamt = Math.Round(subtotal + cgstAmountOnBillAmount + sgstAmountOnBillAmount + igstAmountOnBillAmount);
-            roundoff = Math.Round(totalgstamt - (subtotal + cgstAmountOnBillAmount + sgstAmountOnBillAmount + igstAmountOnBillAmount), 2);
-            txtRoundOff.Text = roundoff.ToString();
+            //roundoff = Math.Round(totalgstamt - (subtotal + cgstAmountOnBillAmount + sgstAmountOnBillAmount + igstAmountOnBillAmount), 2);
+            //txtRoundOff.Text = roundoff.ToString();
             txtBILL_AMOUNT.Text = Math.Round(total + roundoff, 2).ToString();
         
         //subtotal = Math.Round(grossAmount + cgstAmountOnBillAmount + sgstAmountOnBillAmount + igstAmountOnBillAmount, 2);
