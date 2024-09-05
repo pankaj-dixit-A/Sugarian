@@ -34,6 +34,7 @@ public partial class Report_rptACBalanceList : System.Web.UI.Page
     double grandTra_Credit = 0.00;
     double grandClo_Debit = 0.00;
     double grandClo_Credit = 0.00;
+    string accode2 = "";
     protected void Page_Load(object sender, EventArgs e)
     {
         qryCommon = "dbo.qryGledgernew";
@@ -48,7 +49,7 @@ public partial class Report_rptACBalanceList : System.Web.UI.Page
             lblCompany.Text = Session["Company_Name"].ToString();
             lblCompanyAddr.Text = clsGV.CompanyAddress;
             string groupcode = Request.QueryString["whr1"];
-            string accode2 = groupcode.Replace(" and Group_Code=", "");
+            accode2 = groupcode.Replace(" and Group_Code=", "");
             string groupcodename = clsCommon.getString("select group_Name_E from NT_1_BSGroupMaster where group_Code='"
                 + accode2 + "' and Company_Code=" + Convert.ToInt32(Session["Company_Code"].ToString()));
             lblgroupcodename.Text = groupcodename;
@@ -259,13 +260,27 @@ public partial class Report_rptACBalanceList : System.Web.UI.Page
                 //    "SUM(case when DOC_DATE between '" + fromdt + "' and '" + todt + "' then case when DRCR='C' then AMOUNT else 0 end else 0 end ) as credit" +
                 //    ",Ac_Name_E,group_Type from qryGledgernew  where DOC_DATE between '" + fromdt + "' and '" + todt + "' and Company_Code=" + Convert.ToInt32(Session["Company_Code"].ToString()) + "" +
                 //    " group by ac_code,Ac_Name_E,group_Type";
-                qry = "select ac_code,SUM(case when DOC_DATE < '" + fromdt + "' then case when DRCR='D' then AMOUNT  else -amount end else 0 end ) as opbal ," +
-                       "SUM(case when DOC_DATE between '" + fromdt + "' and '" + todt + "' then case when DRCR='D' then AMOUNT else 0 end else 0 end ) as debit, " +
-                       "SUM(case when DOC_DATE between '" + fromdt + "' and '" + todt + "' then case when DRCR='C' then AMOUNT else 0 end else 0 end ) as credit," +
-                       "Ac_Name_E,group_Type from qryGledgernew  where DOC_DATE <= '" + todt + "' and Company_Code=" + Convert.ToInt32(Session["Company_Code"].ToString()) + " group by ac_code,Ac_Name_E,group_Type " +
-                       " having SUM(case when DOC_DATE < '" + fromdt + "' then case when DRCR='D' then AMOUNT  else -amount end else 0 end ) <> 0 and " +
-                       " SUM(case when DOC_DATE between '" + fromdt + "' and '" + todt + "' then case when DRCR='D' then AMOUNT else 0 end else 0 end ) <>0  and " +
-                       " SUM(case when DOC_DATE between '" + fromdt + "' and '" + todt + "' then case when DRCR='C' then AMOUNT else 0 end else 0 end ) <> 0 ";
+                if (accode2 != "")
+                {
+                    qry = "select ac_code,SUM(case when DOC_DATE < '" + fromdt + "' then case when DRCR='D' then AMOUNT  else -amount end else 0 end ) as opbal ," +
+                           "SUM(case when DOC_DATE between '" + fromdt + "' and '" + todt + "' then case when DRCR='D' then AMOUNT else 0 end else 0 end ) as debit, " +
+                           "SUM(case when DOC_DATE between '" + fromdt + "' and '" + todt + "' then case when DRCR='C' then AMOUNT else 0 end else 0 end ) as credit," +
+                           "Ac_Name_E,group_Type from qryGledgernew  where Group_Code=" + accode2
+                           + " and DOC_DATE <= '" + todt + "' and Company_Code=" + Convert.ToInt32(Session["Company_Code"].ToString()) + " group by ac_code,Ac_Name_E,group_Type " +
+                           " having SUM(case when DOC_DATE < '" + fromdt + "' then case when DRCR='D' then AMOUNT  else -amount end else 0 end ) <> 0 and " +
+                           " SUM(case when DOC_DATE between '" + fromdt + "' and '" + todt + "' then case when DRCR='D' then AMOUNT else 0 end else 0 end ) <>0  and " +
+                           " SUM(case when DOC_DATE between '" + fromdt + "' and '" + todt + "' then case when DRCR='C' then AMOUNT else 0 end else 0 end ) <> 0 ";
+                }
+                else
+                {
+                    qry = "select ac_code,SUM(case when DOC_DATE < '" + fromdt + "' then case when DRCR='D' then AMOUNT  else -amount end else 0 end ) as opbal ," +
+                         "SUM(case when DOC_DATE between '" + fromdt + "' and '" + todt + "' then case when DRCR='D' then AMOUNT else 0 end else 0 end ) as debit, " +
+                         "SUM(case when DOC_DATE between '" + fromdt + "' and '" + todt + "' then case when DRCR='C' then AMOUNT else 0 end else 0 end ) as credit," +
+                         "Ac_Name_E,group_Type from qryGledgernew  where DOC_DATE <= '" + todt + "' and Company_Code=" + Convert.ToInt32(Session["Company_Code"].ToString()) + " group by ac_code,Ac_Name_E,group_Type " +
+                         " having SUM(case when DOC_DATE < '" + fromdt + "' then case when DRCR='D' then AMOUNT  else -amount end else 0 end ) <> 0 and " +
+                         " SUM(case when DOC_DATE between '" + fromdt + "' and '" + todt + "' then case when DRCR='D' then AMOUNT else 0 end else 0 end ) <>0  and " +
+                         " SUM(case when DOC_DATE between '" + fromdt + "' and '" + todt + "' then case when DRCR='C' then AMOUNT else 0 end else 0 end ) <> 0 ";
+                }
 
                 ds = clsDAL.SimpleQuery(qry);
                 if (ds != null)
