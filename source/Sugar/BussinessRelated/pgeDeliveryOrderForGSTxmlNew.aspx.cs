@@ -6782,6 +6782,10 @@ public partial class Sugar_pgeDeliveryOrderForGSTxmlNew : System.Web.UI.Page
                         transportshortname = clsCommon.getString("select Short_Name from " + qryAccountList + "  where Ac_Code=" + txtTRANSPORT_CODE.Text + " and Ac_type='T' and Company_Code=" + Convert.ToInt32(Session["Company_Code"].ToString()));
                         hdnftransportshortname.Value = transportshortname;
 
+                        string Panno = clsCommon.getString("select CompanyPan from " + qryAccountList + "  where Ac_Code=" + txtTRANSPORT_CODE.Text + " and Ac_type='T' and Company_Code=" + Convert.ToInt32(Session["Company_Code"].ToString()));
+                        txtPanNo.Text = Panno;
+
+
                         hdnftc.Value = clsCommon.getString("select isnull(accoid,0) as id from " + qryAccountList + "  where Ac_Code=" + txtTRANSPORT_CODE.Text + " and Company_Code=" + Convert.ToInt32(Session["Company_Code"].ToString()));
 
 
